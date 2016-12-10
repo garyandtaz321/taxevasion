@@ -27,10 +27,7 @@ Intro.prototype = {
         this.barbottom.scale.x = 2;
         this.barbottom.scale.y = 2.5;
 
-        volume = this.add.button(750, 0, 'volume', this.toggleMute, this, 1, 0, 2);
-        volume.scale.x = .5;
-        volume.scale.y = .5;
-
+        
 
         this.time.events.add(Phaser.Timer.SECOND * 4.46, () => {
             this.fbi = this.add.image(-125, this.world.centerY - 175, 'FBI');
@@ -89,6 +86,8 @@ Intro.prototype = {
         this.time.events.add(Phaser.Timer.SECOND * 15.5, () => {
             this.game.state.start('Menu');
         }, this);
+
+        this.input.onDown.add(this.skip, this);
     },
 
     update: function () {
@@ -111,6 +110,10 @@ Intro.prototype = {
             volume.scale.y = .5;
         }
     },
+
+    skip: function () {
+        this.game.state.start('Menu');
+    }
 }
         //CoderDojo should be all about fun; If there's no fun to be had, we have a problem.
         //So, we should be able to take breaks, goof off, and have fun. But only in moderation.
